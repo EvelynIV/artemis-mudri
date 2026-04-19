@@ -1,0 +1,24 @@
+{
+  "task_id": "1",
+  "label": "Task 1",
+  "description": "Drive from A to B and stop.",
+  "time_limit_s": 15.0,
+  "path_segments": [
+    {
+      "event_name": "B",
+      "type": "line",
+      "start_anchor": "A",
+      "end_anchor": "B"
+    }
+  ],
+  "control_segments": [
+    {
+      "event_name": "B",
+      "mode": "waypoint",
+      "target_anchor": "B",
+      "nominal_speed_mps": 0.68,
+      "arrival_tolerance_m": 0.03
+    }
+  ]
+}
+

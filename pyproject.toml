@@ -8,14 +8,22 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
 dependencies = [
+    "numpy (<2.3)",
+    "tqdm (>=4.67.3,<5.0.0)",
+    "mujoco (>=3.7.0,<4.0.0)",
+    "scipy (<1.17)",
+    "typer (>=0.24.1,<0.25.0)"
 ]
+
+[project.scripts]
+artemis-demo = "artemis_mudri.interfaces.cli:main"
 
 [tool.poetry]
 packages = [{include = "artemis_mudri", from = "src"}]
 
 [[tool.poetry.source]]
-name = "tuna"
-url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+name = "ustc"
+url = "https://pypi.mirrors.ustc.edu.cn/simple/"
 priority = "primary"
 
 [build-system]
