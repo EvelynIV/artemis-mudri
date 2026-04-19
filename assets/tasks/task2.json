@@ -1,0 +1,67 @@
+{
+  "task_id": "2",
+  "label": "Task 2",
+  "description": "A->B, right arc to C, straight to D, left arc back to A.",
+  "time_limit_s": 30.0,
+  "path_segments": [
+    {
+      "event_name": "B",
+      "type": "line",
+      "start_anchor": "A",
+      "end_anchor": "B"
+    },
+    {
+      "event_name": "C",
+      "type": "arc",
+      "center": "right_center",
+      "start_angle_deg": 90.0,
+      "end_angle_deg": -90.0
+    },
+    {
+      "event_name": "D",
+      "type": "line",
+      "start_anchor": "C",
+      "end_anchor": "D"
+    },
+    {
+      "event_name": "A",
+      "type": "arc",
+      "center": "left_center",
+      "start_angle_deg": -90.0,
+      "end_angle_deg": -270.0
+    }
+  ],
+  "control_segments": [
+    {
+      "event_name": "B",
+      "mode": "waypoint",
+      "target_anchor": "B",
+      "nominal_speed_mps": 0.64,
+      "arrival_tolerance_m": 0.03
+    },
+    {
+      "event_name": "C",
+      "mode": "line_follow",
+      "target_anchor": "C",
+      "nominal_speed_mps": 0.24,
+      "arrival_tolerance_m": 0.07,
+      "search_turn_direction": -1.0
+    },
+    {
+      "event_name": "D",
+      "mode": "waypoint",
+      "target_anchor": "D",
+      "nominal_speed_mps": 0.56,
+      "arrival_tolerance_m": 0.03
+    },
+    {
+      "event_name": "A",
+      "mode": "line_follow",
+      "target_anchor": "A",
+      "nominal_speed_mps": 0.24,
+      "arrival_tolerance_m": 0.07,
+      "search_turn_direction": -1.0
+    }
+  ]
+}
+

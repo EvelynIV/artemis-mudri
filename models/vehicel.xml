@@ -1,0 +1,85 @@
+<mujoco model="artemis_mudri_demo">
+  <compiler angle="degree" coordinate="local"/>
+  <option timestep="0.01" gravity="0.00 0.00 -9.81" integrator="RK4"/>
+  <visual>
+    <headlight ambient="0.450 0.450 0.450" diffuse="0.650 0.650 0.650" specular="0.150 0.150 0.150"/>
+    <rgba haze="1.000 1.000 1.000 1.000"/>
+  </visual>
+  <default>
+    <joint damping="0.8"/>
+    <geom friction="0.8 0.1 0.1" rgba="0.880 0.900 0.920 1.000"/>
+    <velocity kv="80"/>
+  </default>
+  <worldbody>
+    <geom name="ground" type="plane" pos="1.100 0.600 0" size="3 3 0.1" rgba="0.980 0.980 0.980 1.000"/>
+    <geom name="field" type="box" pos="1.100 0.600 0.001" size="1.100 0.600 0.001" rgba="1.000 1.000 1.000 1.000" contype="0" conaffinity="0"/>
+    <geom name="boundary_top" type="capsule" fromto="0.000 0.000 0.002 2.200 0.000 0.002" size="0.004" rgba="0.550 0.550 0.550 1.000" contype="0" conaffinity="0"/>
+    <geom name="boundary_bottom" type="capsule" fromto="0.000 1.200 0.002 2.200 1.200 0.002" size="0.004" rgba="0.550 0.550 0.550 1.000" contype="0" conaffinity="0"/>
+    <geom name="boundary_left" type="capsule" fromto="0.000 0.000 0.002 0.000 1.200 0.002" size="0.004" rgba="0.550 0.550 0.550 1.000" contype="0" conaffinity="0"/>
+    <geom name="boundary_right" type="capsule" fromto="2.200 0.000 0.002 2.200 1.200 0.002" size="0.004" rgba="0.550 0.550 0.550 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_0" type="capsule" fromto="0.6000 1.0000 0.0010 0.5220 0.9923 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_1" type="capsule" fromto="0.5220 0.9923 0.0010 0.4469 0.9696 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_2" type="capsule" fromto="0.4469 0.9696 0.0010 0.3778 0.9326 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_3" type="capsule" fromto="0.3778 0.9326 0.0010 0.3172 0.8828 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_4" type="capsule" fromto="0.3172 0.8828 0.0010 0.2674 0.8222 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_5" type="capsule" fromto="0.2674 0.8222 0.0010 0.2304 0.7531 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_6" type="capsule" fromto="0.2304 0.7531 0.0010 0.2077 0.6780 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_7" type="capsule" fromto="0.2077 0.6780 0.0010 0.2000 0.6000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_8" type="capsule" fromto="0.2000 0.6000 0.0010 0.2077 0.5220 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_9" type="capsule" fromto="0.2077 0.5220 0.0010 0.2304 0.4469 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_10" type="capsule" fromto="0.2304 0.4469 0.0010 0.2674 0.3778 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_11" type="capsule" fromto="0.2674 0.3778 0.0010 0.3172 0.3172 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_12" type="capsule" fromto="0.3172 0.3172 0.0010 0.3778 0.2674 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_13" type="capsule" fromto="0.3778 0.2674 0.0010 0.4469 0.2304 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_14" type="capsule" fromto="0.4469 0.2304 0.0010 0.5220 0.2077 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_15" type="capsule" fromto="0.5220 0.2077 0.0010 0.6000 0.2000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_0" type="capsule" fromto="1.6000 1.0000 0.0010 1.6780 0.9923 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_1" type="capsule" fromto="1.6780 0.9923 0.0010 1.7531 0.9696 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_2" type="capsule" fromto="1.7531 0.9696 0.0010 1.8222 0.9326 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_3" type="capsule" fromto="1.8222 0.9326 0.0010 1.8828 0.8828 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_4" type="capsule" fromto="1.8828 0.8828 0.0010 1.9326 0.8222 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_5" type="capsule" fromto="1.9326 0.8222 0.0010 1.9696 0.7531 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_6" type="capsule" fromto="1.9696 0.7531 0.0010 1.9923 0.6780 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_7" type="capsule" fromto="1.9923 0.6780 0.0010 2.0000 0.6000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_8" type="capsule" fromto="2.0000 0.6000 0.0010 1.9923 0.5220 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_9" type="capsule" fromto="1.9923 0.5220 0.0010 1.9696 0.4469 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_10" type="capsule" fromto="1.9696 0.4469 0.0010 1.9326 0.3778 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_11" type="capsule" fromto="1.9326 0.3778 0.0010 1.8828 0.3172 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_12" type="capsule" fromto="1.8828 0.3172 0.0010 1.8222 0.2674 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_13" type="capsule" fromto="1.8222 0.2674 0.0010 1.7531 0.2304 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_14" type="capsule" fromto="1.7531 0.2304 0.0010 1.6780 0.2077 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_15" type="capsule" fromto="1.6780 0.2077 0.0010 1.6000 0.2000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <site name="anchor_A" pos="0.6000 1.0000 0.0100" size="0.0200" type="sphere" rgba="0.870 0.200 0.200 1.000"/>
+    <site name="anchor_B" pos="1.6000 1.0000 0.0100" size="0.0200" type="sphere" rgba="0.180 0.560 0.200 1.000"/>
+    <site name="anchor_C" pos="1.6000 0.2000 0.0100" size="0.0200" type="sphere" rgba="0.160 0.380 0.760 1.000"/>
+    <site name="anchor_D" pos="0.6000 0.2000 0.0100" size="0.0200" type="sphere" rgba="0.880 0.620 0.100 1.000"/>
+    <body name="car" pos="0.000 0.000 0.050">
+      <joint name="car_x" type="slide" axis="1 0 0"/>
+      <joint name="car_y" type="slide" axis="0 1 0"/>
+      <joint name="car_yaw" type="hinge" axis="0 0 1"/>
+      <geom name="chassis" type="box" size="0.090 0.060 0.025" rgba="0.220 0.250 0.310 1.000" contype="0" conaffinity="0"/>
+      <site name="car_nose" pos="0.0900 0.0000 0.0100" size="0.0140" type="sphere" rgba="0.900 0.250 0.250 1.000"/>
+      <site name="sensor_0" pos="0.0850 -0.0400 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+      <site name="sensor_1" pos="0.0850 -0.0200 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+      <site name="sensor_2" pos="0.0850 0.0000 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+      <site name="sensor_3" pos="0.0850 0.0200 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+      <site name="sensor_4" pos="0.0850 0.0400 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+      <site name="led_0" pos="0.0350 -0.0400 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+      <site name="led_1" pos="0.0350 -0.0200 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+      <site name="led_2" pos="0.0350 0.0000 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+      <site name="led_3" pos="0.0350 0.0200 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+      <site name="led_4" pos="0.0350 0.0400 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+      <body name="left_wheel" pos="0.000 0.070 -0.005">
+        <geom name="left_wheel_geom" type="cylinder" size="0.030 0.014" rgba="0.100 0.100 0.100 1.000" contype="0" conaffinity="0" euler="90 0 0"/>
+      </body>
+      <body name="right_wheel" pos="0.000 -0.070 -0.005">
+        <geom name="right_wheel_geom" type="cylinder" size="0.030 0.014" rgba="0.100 0.100 0.100 1.000" contype="0" conaffinity="0" euler="90 0 0"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <velocity name="x_drive" joint="car_x" kv="120"/>
+    <velocity name="y_drive" joint="car_y" kv="120"/>
+    <velocity name="yaw_drive" joint="car_yaw" kv="45"/>
+  </actuator>
+</mujoco>
