@@ -1,4 +1,4 @@
-from artemis_mudri.interfaces.cli import main
+from artemis_mudri.commands.app import main
 
 
 if __name__ == "__main__":

@@ -12,8 +12,10 @@ from artemis_mudri.domains.track import ARC_LINE_WIDTH_M, OFFICIAL_ARCS
 @dataclass(frozen=True)
 class LineSensorArrayConfig:
     """线传感器阵列的几何与检测参数。"""
+
     forward_offset_m: float = 0.085
-    lateral_offsets_m: tuple[float, ...] = (-0.04, -0.02, 0.0, 0.02, 0.04)
+    lateral_offsets_m: tuple[float, ...] = (0.04, 0.03, 0.02, 0.01, -0.01, -0.02, -0.03, -0.04)
+    error_weights: tuple[int, ...] = (-4, -3, -2, -1, 1, 2, 3, 4)
     line_half_width_m: float = 0.5 * ARC_LINE_WIDTH_M
     line_softness_m: float = 0.004
     sensor_threshold: float = 0.55
@@ -22,11 +24,14 @@ class LineSensorArrayConfig:
 @dataclass(frozen=True)
 class LineSensorArrayReading:
     """一次传感器采样结果。"""
+
     local_sensor_positions: FloatArray
     world_sensor_positions: FloatArray
     darkness: FloatArray
     digital_values: tuple[int, ...]
+    error_weights: tuple[int, ...]
     line_detected: bool
+    error: float
     lateral_error_m: float | None
 
 
@@ -35,8 +40,12 @@ DEFAULT_LINE_SENSOR_ARRAY_CONFIG = LineSensorArrayConfig()
 
 class LineSensorArray:
     """基于赛道圆弧定义的简化线传感器。"""
+
     def __init__(self, config: LineSensorArrayConfig | None = None) -> None:
         self.config = config or DEFAULT_LINE_SENSOR_ARRAY_CONFIG
+        if len(self.config.lateral_offsets_m) != len(self.config.error_weights):
+            raise ValueError("lateral_offsets_m and error_weights must have the same length")
+        self._previous_error = 0.0
         # 预先生成车体系下的探头坐标，减少重复计算。
         self._local_sensor_positions = np.column_stack(
             (
@@ -87,15 +96,23 @@ class LineSensorArray:
         digital = darkness >= self.config.sensor_threshold
         line_detected = bool(np.any(digital))
         lateral_error_m = None
+        error = self._previous_error
         if line_detected:
             lateral_positions = self._local_sensor_positions[:, 1]
             digital_weights = digital.astype(np.float64)
             lateral_error_m = float(np.dot(digital_weights, lateral_positions) / digital_weights.sum())
+            error = float(
+                np.dot(digital_weights, np.asarray(self.config.error_weights, dtype=np.float64))
+                / digital_weights.sum()
+            )
+            self._previous_error = error
         return LineSensorArrayReading(
             local_sensor_positions=self.local_sensor_positions,
             world_sensor_positions=world_sensor_positions,
             darkness=darkness,
             digital_values=tuple(int(value) for value in digital),
+            error_weights=self.config.error_weights,
             line_detected=line_detected,
+            error=error,
             lateral_error_m=lateral_error_m,
         )

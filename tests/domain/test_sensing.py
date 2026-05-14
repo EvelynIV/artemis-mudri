@@ -15,6 +15,8 @@ class LineSensorArrayTest(unittest.TestCase):
 
     def test_pose_sampling_detects_line_and_centroid_direction(self) -> None:
         reading = self.sensor_array.sense_pose(x=1.53, y=0.98, yaw=0.0)
+        self.assertEqual(len(reading.digital_values), 8)
+        self.assertEqual(reading.error_weights, (-4, -3, -2, -1, 1, 2, 3, 4))
         self.assertTrue(reading.line_detected)
         self.assertIsNotNone(reading.lateral_error_m)
         self.assertGreater(abs(reading.lateral_error_m or 0.0), 0.005)

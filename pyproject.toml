@@ -1,7 +1,7 @@
 [project]
 name = "artemis-mudri"
 version = "0.1.0"
-description = ""
+description = "面向教学的 MuJoCo 自动行驶小车演示"
 authors = [
     {name = "migo",email = "1695587905@qq.com"}
 ]
@@ -12,11 +12,14 @@ dependencies = [
     "tqdm (>=4.67.3,<5.0.0)",
     "mujoco (>=3.7.0,<4.0.0)",
     "scipy (<1.17)",
-    "typer (>=0.24.1,<0.25.0)"
+    "typer (>=0.24.1,<0.25.0)",
+    "gymnasium[mujoco] (>=1.3.0,<2.0.0)",
+    "grpcio (>=1.80.0,<2.0.0)",
+    "protobuf (>=7.34.1,<8.0.0)",
 ]
 
 [project.scripts]
-artemis-demo = "artemis_mudri.interfaces.cli:main"
+artemis-demo = "artemis_mudri.commands.app:app"
 
 [tool.poetry]
 packages = [{include = "artemis_mudri", from = "src"}]

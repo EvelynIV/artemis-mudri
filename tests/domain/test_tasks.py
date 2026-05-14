@@ -9,7 +9,7 @@ from artemis_mudri.domains.track import ANCHORS
 
 class RoutePlanTest(unittest.TestCase):
     def test_available_tasks_reflect_task_directory(self) -> None:
-        self.assertEqual(available_tasks(), ("1", "2", "3"))
+        self.assertEqual(available_tasks(), ("0", "1", "2", "3", "4"))
 
     def test_anchor_coordinates_match_problem_geometry(self) -> None:
         self.assertTupleEqual(tuple(ANCHORS["A"]), (0.6, 1.0))
