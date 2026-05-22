@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package artemis_mudri.simulation.v1;
+
+// 二维平面位姿。
+message Pose2D {
+  // 世界坐标系下的 x 坐标，单位米。
+  double x_m = 1;
+  // 世界坐标系下的 y 坐标，单位米。
+  double y_m = 2;
+  // 世界坐标系下的偏航角，单位弧度。
+  double yaw_rad = 3;
+}

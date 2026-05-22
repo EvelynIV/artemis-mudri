@@ -1,0 +1,15 @@
+<mujoco model="artemis_mudri_demo">
+  <compiler angle="degree" coordinate="local"/>
+  <option timestep="0.01" gravity="0.00 0.00 -9.81" integrator="RK4"/>
+  <visual>
+    <headlight ambient="0.450 0.450 0.450" diffuse="0.650 0.650 0.650" specular="0.150 0.150 0.150"/>
+    <rgba haze="1.000 1.000 1.000 1.000"/>
+  </visual>
+  <default>
+    <joint damping="0.8"/>
+    <geom friction="0.8 0.1 0.1" rgba="0.880 0.900 0.920 1.000"/>
+    <velocity kv="80"/>
+  </default>
+  <include file="track.xml"/>
+  <include file="car.xml"/>
+</mujoco>

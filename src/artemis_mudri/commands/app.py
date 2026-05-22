@@ -3,12 +3,17 @@
 from __future__ import annotations
 
 import logging
+from concurrent import futures
+from pathlib import Path
 from typing import Annotated
 
+import grpc
 import typer
 
-from artemis_mudri.application.simulation_service import serve as serve_simulation
-from artemis_mudri.domains.task import available_tasks
+from artemis_mudri.protos.simulation.v1 import vehicle_simulation_pb2_grpc as pb2_grpc
+from artemis_mudri.simulation.noise import NoiseConfig, enabled_noise_modules, load_noise_config
+from artemis_mudri.simulation.state_publisher import ZmqSimulationStatePublisher
+from artemis_mudri.servicer.servicer import VehicleSimulationService
 
 logging.basicConfig(
     level=logging.INFO,
@@ -27,28 +32,77 @@ def root() -> None:
     """自动行驶小车仿真服务。"""
 
 
-def _validate_task(task: str) -> str:
-    """校验任务编号是否合法。"""
-    valid_tasks = available_tasks()
-    if task not in valid_tasks:
-        choices = ", ".join(valid_tasks)
-        raise typer.BadParameter(f"Task must be one of: {choices}.")
-    return task
+def create_grpc_server(
+    default_render: bool = False,
+    max_workers: int = 4,
+    noise_config: NoiseConfig | None = None,
+    viewer_state_bind: str | None = None,
+) -> grpc.Server:
+    """创建已注册 VehicleSimulationService 的 gRPC server。"""
+
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=max_workers))
+    state_publisher = None
+    if viewer_state_bind is not None:
+        state_publisher = ZmqSimulationStatePublisher(viewer_state_bind)
+        state_publisher.start()
+    service = VehicleSimulationService(
+        default_render=default_render,
+        noise_config=noise_config,
+        state_publisher=state_publisher,
+    )
+    pb2_grpc.add_VehicleSimulationServiceServicer_to_server(
+        service,
+        server,
+    )
+    setattr(server, "_artemis_vehicle_simulation_service", service)
+    return server
+
+
+def serve_simulation(
+    host: str = "127.0.0.1",
+    port: int = 50051,
+    render: bool = False,
+    max_workers: int = 4,
+    noise_config_path: Path | None = None,
+    viewer_state_bind: str | None = None,
+) -> None:
+    """启动阻塞式 gRPC 仿真服务。"""
+
+    address = f"{host}:{port}"
+    noise_config = load_noise_config(noise_config_path) if noise_config_path is not None else None
+    if noise_config is not None:
+        logger.info(
+            "Loaded noise config preset=%s path=%s enabled=%s",
+            noise_config.preset,
+            noise_config_path,
+            ",".join(enabled_noise_modules(noise_config)) or "none",
+        )
+    server = create_grpc_server(
+        default_render=render,
+        max_workers=max_workers,
+        noise_config=noise_config,
+        viewer_state_bind=viewer_state_bind,
+    )
+    bound_port = server.add_insecure_port(address)
+    if bound_port == 0:
+        raise RuntimeError(f"Failed to bind gRPC server to {address}")
+    server.start()
+    logger.info("Vehicle simulation service listening on %s", address)
+    if viewer_state_bind is not None:
+        logger.info("Remote viewer state publisher enabled at %s", viewer_state_bind)
+    try:
+        server.wait_for_termination()
+    except KeyboardInterrupt:
+        logger.info("Stopping vehicle simulation service")
+        server.stop(grace=1.0)
+    finally:
+        service = getattr(server, "_artemis_vehicle_simulation_service", None)
+        if service is not None:
+            service.close()
 
 
 @app.command("serve")
 def serve_command(
-    task: Annotated[
-        str,
-        typer.Option(
-            "--task",
-            help="客户端未指定任务时使用的默认任务编号。",
-            metavar="TASK_ID",
-            show_default=True,
-            envvar="ARTEMIS_TASK",
-            show_envvar=True,
-        ),
-    ] = "1",
     host: Annotated[
         str,
         typer.Option(
@@ -85,24 +139,44 @@ def serve_command(
             show_envvar=True,
         ),
     ] = 4,
+    noise_config: Annotated[
+        Path | None,
+        typer.Option(
+            "--noise-config",
+            help="噪声 YAML 配置路径；不传时保持兼容默认仿真。",
+            envvar="ARTEMIS_NOISE_CONFIG",
+            show_envvar=True,
+        ),
+    ] = None,
+    viewer_state_bind: Annotated[
+        str | None,
+        typer.Option(
+            "--viewer-state-bind",
+            help="可选 ZeroMQ PUB 监听地址，用于发布 MuJoCo qpos/qvel 给远程 viewer。",
+            envvar="ARTEMIS_VIEWER_STATE_BIND",
+            show_envvar=True,
+        ),
+    ] = None,
 ) -> None:
     """启动仿真服务，等待小车客户端连接。"""
 
-    validated_task = _validate_task(task)
     logger.info(
-        "Starting simulation service host=%s port=%s default_task=%s render=%s",
+        "Starting simulation service host=%s port=%s render=%s",
         host,
         port,
-        validated_task,
         render,
     )
-    serve_simulation(
-        host=host,
-        port=port,
-        default_task_id=validated_task,
-        render=render,
-        max_workers=max_workers,
-    )
+    try:
+        serve_simulation(
+            host=host,
+            port=port,
+            render=render,
+            max_workers=max_workers,
+            noise_config_path=noise_config,
+            viewer_state_bind=viewer_state_bind,
+        )
+    except (FileNotFoundError, ValueError, TypeError) as exc:
+        raise typer.BadParameter(str(exc), param_hint="--noise-config") from exc
 
 
 def main() -> None:

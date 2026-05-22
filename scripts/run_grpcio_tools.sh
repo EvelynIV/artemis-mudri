@@ -45,7 +45,7 @@ fi
 
 ensure_package mypy-protobuf
 
-PROTO_ROOT="${PROTO_ROOT:-protos}"
+PROTO_ROOT="${PROTO_ROOT:-src}"
 OUT_DIR="${OUT_DIR:-src}"
 
 mkdir -p "${OUT_DIR}"

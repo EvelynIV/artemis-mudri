@@ -19,7 +19,7 @@ class CommandLineInterfaceTest(unittest.TestCase):
             )
         )
 
-    def _run(self, *args: str) -> subprocess.CompletedProcess[str]:
+    def _run(self, *args: str, check: bool = True) -> subprocess.CompletedProcess[str]:
         env = os.environ.copy()
         env["PYTHONPATH"] = self.pythonpath
         return subprocess.run(
@@ -28,7 +28,7 @@ class CommandLineInterfaceTest(unittest.TestCase):
             env=env,
             capture_output=True,
             text=True,
-            check=True,
+            check=check,
         )
 
     def test_python_m_help_displays_service_command(self) -> None:
@@ -38,10 +38,24 @@ class CommandLineInterfaceTest(unittest.TestCase):
 
     def test_serve_help_displays_service_options(self) -> None:
         completed = self._run(sys.executable, "-m", "artemis_mudri.commands.app", "serve", "--help")
-        self.assertIn("--task", completed.stdout)
         self.assertIn("--host", completed.stdout)
         self.assertIn("--port", completed.stdout)
         self.assertIn("--render", completed.stdout)
+        self.assertIn("--noise-config", completed.stdout)
+        self.assertIn("--viewer-state-bind", completed.stdout)
+
+    def test_missing_noise_config_returns_error(self) -> None:
+        completed = self._run(
+            sys.executable,
+            "-m",
+            "artemis_mudri.commands.app",
+            "serve",
+            "--noise-config",
+            "examples/configs/noise/missing.yaml",
+            check=False,
+        )
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("Noise config file not found", completed.stderr)
 
 
 if __name__ == "__main__":

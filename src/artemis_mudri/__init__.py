@@ -1,12 +1,8 @@
-"""MuJoCo simulation service for the NUEDC automatic car task."""
+"""MuJoCo simulation service for an automatic car."""
 
-from artemis_mudri.domains.simulation import SimulationSummary
-from artemis_mudri.domains.task import available_tasks, build_route_plan
-from artemis_mudri.infrastructure.mujoco.backend import DifferentialMuJoCoSimulation
+from artemis_mudri.simulation import DifferentialSimulation, SimulationSummary
 
 __all__ = [
-    "DifferentialMuJoCoSimulation",
+    "DifferentialSimulation",
     "SimulationSummary",
-    "available_tasks",
-    "build_route_plan",
 ]

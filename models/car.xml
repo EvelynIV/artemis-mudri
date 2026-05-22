@@ -1,0 +1,46 @@
+<mujoco>
+  <worldbody>
+    <body name="car" pos="0.000 0.000 0.050">
+          <joint name="car_x" type="slide" axis="1 0 0"/>
+          <joint name="car_y" type="slide" axis="0 1 0"/>
+          <joint name="car_yaw" type="hinge" axis="0 0 1"/>
+          <geom name="chassis" type="box" size="0.090 0.060 0.025" rgba="0.220 0.250 0.310 1.000" contype="0" conaffinity="0"/>
+          <site name="car_nose" pos="0.0900 0.0000 0.0100" size="0.0140" type="sphere" rgba="0.900 0.250 0.250 1.000"/>
+          <site name="sensor_0" pos="0.0850 0.0400 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+    <site name="sensor_1" pos="0.0850 0.0300 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+    <site name="sensor_2" pos="0.0850 0.0200 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+    <site name="sensor_3" pos="0.0850 0.0100 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+    <site name="sensor_4" pos="0.0850 -0.0100 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+    <site name="sensor_5" pos="0.0850 -0.0200 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+    <site name="sensor_6" pos="0.0850 -0.0300 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+    <site name="sensor_7" pos="0.0850 -0.0400 -0.0150" size="0.0050" type="sphere" rgba="0.950 0.650 0.200 1.000"/>
+          <site name="led_0" pos="0.0350 0.0400 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+    <site name="led_1" pos="0.0350 0.0300 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+    <site name="led_2" pos="0.0350 0.0200 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+    <site name="led_3" pos="0.0350 0.0100 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+    <site name="led_4" pos="0.0350 -0.0100 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+    <site name="led_5" pos="0.0350 -0.0200 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+    <site name="led_6" pos="0.0350 -0.0300 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+    <site name="led_7" pos="0.0350 -0.0400 0.0350" size="0.0060" type="sphere" rgba="0.160 0.160 0.160 1.000"/>
+          <body name="front_left_wheel" pos="0.055 0.070 -0.005">
+            <joint name="front_left_steer" type="hinge" axis="0 0 1"/>
+            <geom name="front_left_wheel_geom" type="cylinder" size="0.030 0.014" rgba="0.100 0.100 0.100 1.000" contype="0" conaffinity="0" euler="90 0 0"/>
+          </body>
+          <body name="front_right_wheel" pos="0.055 -0.070 -0.005">
+            <joint name="front_right_steer" type="hinge" axis="0 0 1"/>
+            <geom name="front_right_wheel_geom" type="cylinder" size="0.030 0.014" rgba="0.100 0.100 0.100 1.000" contype="0" conaffinity="0" euler="90 0 0"/>
+          </body>
+          <body name="rear_left_wheel" pos="-0.055 0.070 -0.005">
+            <geom name="rear_left_wheel_geom" type="cylinder" size="0.030 0.014" rgba="0.100 0.100 0.100 1.000" contype="0" conaffinity="0" euler="90 0 0"/>
+          </body>
+          <body name="rear_right_wheel" pos="-0.055 -0.070 -0.005">
+            <geom name="rear_right_wheel_geom" type="cylinder" size="0.030 0.014" rgba="0.100 0.100 0.100 1.000" contype="0" conaffinity="0" euler="90 0 0"/>
+          </body>
+        </body>
+  </worldbody>
+  <actuator>
+    <velocity name="x_drive" joint="car_x" kv="120"/>
+        <velocity name="y_drive" joint="car_y" kv="120"/>
+        <velocity name="yaw_drive" joint="car_yaw" kv="45"/>
+  </actuator>
+</mujoco>
