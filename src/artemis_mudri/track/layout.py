@@ -31,6 +31,31 @@ CENTER_POINTS: dict[str, FloatArray] = {
 
 
 @dataclass(frozen=True)
+class ArenaLine:
+    """赛道中的一段标准直线。"""
+
+    name: str
+    start: FloatArray
+    end: FloatArray
+
+    def sample(self, resolution: float) -> NDArray[np.float64]:
+        """将直线离散为路径点。"""
+        from artemis_mudri.track.sampling import sample_line
+
+        return sample_line(self.start, self.end, resolution)
+
+    def centerline_distance(self, point: FloatArray) -> float:
+        """计算点到线段中心线的距离。"""
+        segment = self.end - self.start
+        segment_length_sq = float(np.dot(segment, segment))
+        if segment_length_sq <= 0.0:
+            return float(np.linalg.norm(point - self.start))
+        t = float(np.clip(np.dot(point - self.start, segment) / segment_length_sq, 0.0, 1.0))
+        projection = self.start + t * segment
+        return float(np.linalg.norm(point - projection))
+
+
+@dataclass(frozen=True)
 class ArenaArc:
     """赛道中的一段标准圆弧。"""
     name: str
@@ -86,6 +111,8 @@ OFFICIAL_ARCS = (
         end_angle_deg=-90.0,
     ),
 )
+
+OFFICIAL_LINES: tuple[ArenaLine, ...] = ()
 
 
 def anchor(name: str) -> FloatArray:
