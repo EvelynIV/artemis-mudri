@@ -5,7 +5,7 @@ import type { RuntimeConfig } from "./config";
 import { EpisodeRuntime, type StartEpisodeLoop } from "./runtime";
 
 const config: RuntimeConfig = {
-  target: "127.0.0.1:50051",
+  target: "tcp://127.0.0.1:5556",
   webHost: "127.0.0.1",
   webPort: 8765,
   maxSpeed: 20,

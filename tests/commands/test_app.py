@@ -38,8 +38,7 @@ class CommandLineInterfaceTest(unittest.TestCase):
 
     def test_serve_help_displays_service_options(self) -> None:
         completed = self._run(sys.executable, "-m", "artemis_mudri.commands.app", "serve", "--help")
-        self.assertIn("--host", completed.stdout)
-        self.assertIn("--port", completed.stdout)
+        self.assertIn("--bind", completed.stdout)
         self.assertIn("--render", completed.stdout)
         self.assertIn("--noise-config", completed.stdout)
         self.assertIn("--viewer-state-bind", completed.stdout)

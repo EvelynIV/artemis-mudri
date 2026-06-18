@@ -11,11 +11,12 @@ type UseManualSocketOptions = {
   onObservation: (observation: ObservationSnapshot) => void;
   onRuntimeStatus: (status: RuntimeStatus, reason?: string) => void;
   onStatus: (status: string) => void;
+  onActivity?: (message: string) => void;
 };
 
 const CONTROL_SEND_INTERVAL_MS = 20;
 
-export function useManualSocket({ config, onObservation, onRuntimeStatus, onStatus }: UseManualSocketOptions) {
+export function useManualSocket({ config, onObservation, onRuntimeStatus, onStatus, onActivity }: UseManualSocketOptions) {
   const socketRef = useRef<WebSocket | null>(null);
   const lastSendRef = useRef(0);
   const lastControlRef = useRef<ControlPressedState>({ leftPressed: false, rightPressed: false });
@@ -39,8 +40,9 @@ export function useManualSocket({ config, onObservation, onRuntimeStatus, onStat
     if (!sendMessage({ type: "stop" })) {
       fetch("/stop", { method: "POST", keepalive: true });
     }
+    onActivity?.("已发送停止请求");
     onStatus("已请求停止");
-  }, [onStatus, sendMessage]);
+  }, [onActivity, onStatus, sendMessage]);
 
   useEffect(() => {
     if (!config) return;
@@ -55,12 +57,14 @@ export function useManualSocket({ config, onObservation, onRuntimeStatus, onStat
       socketRef.current = socket;
 
       socket.addEventListener("open", () => {
+        onActivity?.("WebSocket 已连接");
         onStatus("WebSocket 已连接");
         sendControl(lastControlRef.current, true);
       });
       socket.addEventListener("message", (event) => {
         const message = JSON.parse(event.data) as ServerMessage;
         if (message.type === "status") {
+          onActivity?.(message.reason ? `状态变更：${message.status} / ${message.reason}` : `状态变更：${message.status}`);
           onRuntimeStatus(message.status, message.reason);
           return;
         }
@@ -69,10 +73,12 @@ export function useManualSocket({ config, onObservation, onRuntimeStatus, onStat
       });
       socket.addEventListener("close", () => {
         if (stopped) return;
+        onActivity?.("WebSocket 已断开，准备重连");
         onStatus("WebSocket 已断开，正在重连...");
         reconnectTimer = window.setTimeout(connect, 500);
       });
       socket.addEventListener("error", () => {
+        onActivity?.("WebSocket 连接错误");
         onStatus("WebSocket 连接错误");
       });
     };
@@ -83,7 +89,7 @@ export function useManualSocket({ config, onObservation, onRuntimeStatus, onStat
       if (reconnectTimer !== null) window.clearTimeout(reconnectTimer);
       activeSocket?.close();
     };
-  }, [config, onObservation, onRuntimeStatus, onStatus, sendControl]);
+  }, [config, onActivity, onObservation, onRuntimeStatus, onStatus, sendControl]);
 
   return { sendControl, requestStop };
 }

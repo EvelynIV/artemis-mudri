@@ -1,8 +1,8 @@
 import type { WebSocket } from "ws";
 import type { ObservationSnapshot, RuntimeStatus, ServerMessage } from "../protocol/types";
 import type { RuntimeConfig } from "./config";
-import { startGrpcLoop } from "./grpc/loop";
 import { resetControlState, type ControlState, type EpisodeRuntimeSnapshot, type StopFlag } from "./state";
+import { startZmqEpisodeLoop } from "./zmqBridge";
 
 type ActiveLoop = {
   close: (reason?: string) => void;
@@ -39,7 +39,7 @@ export class EpisodeRuntime {
 
   constructor(
     private readonly config: RuntimeConfig,
-    private readonly startLoop: StartEpisodeLoop = startGrpcLoop
+    private readonly startLoop: StartEpisodeLoop = startZmqEpisodeLoop
   ) {}
 
   snapshot(): EpisodeRuntimeSnapshot {

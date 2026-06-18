@@ -36,6 +36,18 @@ export type ObservationSnapshot = {
   headingErrorRad: number;
   longitudinalVelocityMS: number;
   yawRateRadS: number;
+  simulationEvents: SimulationEventSnapshot[];
+};
+
+export type SimulationEventSnapshot = {
+  eventId: number;
+  stepId: number;
+  namespace: string;
+  type: string;
+  severity: string;
+  name: string;
+  metrics: Record<string, number>;
+  labels: Record<string, string>;
 };
 
 export type ClientMessage =

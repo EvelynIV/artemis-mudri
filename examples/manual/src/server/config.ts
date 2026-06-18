@@ -1,15 +1,11 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import process from "node:process";
 import dotenv from "dotenv";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 export const REPO_ROOT = path.resolve(__dirname, "../../../..");
-export const PROTO_ROOT = path.join(REPO_ROOT, "src");
-export const VEHICLE_PROTO = path.join(PROTO_ROOT, "artemis_mudri/protos/simulation/v1/vehicle_simulation.proto");
-
 dotenv.config({ path: path.join(REPO_ROOT, ".env") });
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
@@ -34,7 +30,7 @@ function envNumber(name: string, defaultValue: number) {
 
 export function runtimeConfig(): RuntimeConfig {
   return {
-    target: process.env.ARTEMIS_MANUAL_TARGET ?? "127.0.0.1:50051",
+    target: process.env.ARTEMIS_MANUAL_TARGET ?? "tcp://127.0.0.1:5556",
     webHost: process.env.ARTEMIS_MANUAL_WEB_HOST ?? "127.0.0.1",
     webPort: envNumber("ARTEMIS_MANUAL_WEB_PORT", 8765),
     maxSpeed: envNumber("ARTEMIS_MANUAL_MAX_SPEED", 20),
