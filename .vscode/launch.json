@@ -1,17 +1,15 @@
 {
-    // 使用 IntelliSense 了解相关属性。 
-    // 悬停以查看现有属性的描述。
-    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Artemis Demo",
+            "name": "mujoco",
             "type": "debugpy",
             "request": "launch",
-            "module": "artemis_mudri.interfaces.cli",
-            "envFile": "${workspaceFolder}/.env",
+            "module": "artemis_mudri.commands.app",
             "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}"
+            "justMyCode": true,
+            "envFile": "${workspaceFolder}/.env",
+            "args": ["serve"]
         }
     ]
 }

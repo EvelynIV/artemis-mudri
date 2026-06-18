@@ -1,2 +1,0 @@
-"""MuJoCo infrastructure adapter."""
-

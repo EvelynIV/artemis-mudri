@@ -1,0 +1,38 @@
+noise:
+  preset: strong
+  seed: null
+
+  initial_pose:
+    enabled: true
+    x_std_m: 0.008
+    y_std_m: 0.008
+    yaw_uniform_deg: 8.0
+
+  line_sensor:
+    enabled: true
+    darkness_std: 0.08
+    threshold_std: 0.04
+    dropout_prob: 0.06
+    false_positive_prob: 0.03
+
+  imu:
+    enabled: true
+    yaw_std_deg: 1.0
+    yaw_rate_std_deg_s: 4.0
+    yaw_bias_deg: 2.0
+    yaw_rate_bias_deg_s: 1.0
+    yaw_bias_random_walk_std_deg_per_sqrt_s: 0.12
+
+  encoder:
+    enabled: true
+    pulse_std: 0.8
+    speed_std: 1.2
+    dropout_prob: 0.02
+    quantize: true
+
+  actuator:
+    enabled: true
+    left_gain_std: 0.08
+    right_gain_std: 0.08
+    command_std_pulse_per_tick: 0.8
+    speed_response_alpha_std: 0.10

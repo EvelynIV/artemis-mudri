@@ -1,0 +1,98 @@
+<mujoco>
+  <worldbody>
+    <geom name="ground" type="plane" pos="1.100 0.600 0" size="3 3 0.1" rgba="0.980 0.980 0.980 1.000"/>
+        <geom name="field" type="box" pos="1.100 0.600 0.001" size="1.100 0.600 0.001" rgba="1.000 1.000 1.000 1.000" contype="0" conaffinity="0"/>
+        <geom name="boundary_top" type="capsule" fromto="0.000 0.000 0.002 2.200 0.000 0.002" size="0.004" rgba="0.550 0.550 0.550 1.000" contype="0" conaffinity="0"/>
+        <geom name="boundary_bottom" type="capsule" fromto="0.000 1.200 0.002 2.200 1.200 0.002" size="0.004" rgba="0.550 0.550 0.550 1.000" contype="0" conaffinity="0"/>
+        <geom name="boundary_left" type="capsule" fromto="0.000 0.000 0.002 0.000 1.200 0.002" size="0.004" rgba="0.550 0.550 0.550 1.000" contype="0" conaffinity="0"/>
+        <geom name="boundary_right" type="capsule" fromto="2.200 0.000 0.002 2.200 1.200 0.002" size="0.004" rgba="0.550 0.550 0.550 1.000" contype="0" conaffinity="0"/>
+        <geom name="left_arc_0" type="capsule" fromto="0.6000 1.0000 0.0010 0.5701 0.9989 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_1" type="capsule" fromto="0.5701 0.9989 0.0010 0.5404 0.9955 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_2" type="capsule" fromto="0.5404 0.9955 0.0010 0.5110 0.9900 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_3" type="capsule" fromto="0.5110 0.9900 0.0010 0.4821 0.9822 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_4" type="capsule" fromto="0.4821 0.9822 0.0010 0.4539 0.9723 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_5" type="capsule" fromto="0.4539 0.9723 0.0010 0.4264 0.9604 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_6" type="capsule" fromto="0.4264 0.9604 0.0010 0.4000 0.9464 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_7" type="capsule" fromto="0.4000 0.9464 0.0010 0.3747 0.9305 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_8" type="capsule" fromto="0.3747 0.9305 0.0010 0.3506 0.9127 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_9" type="capsule" fromto="0.3506 0.9127 0.0010 0.3279 0.8932 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_10" type="capsule" fromto="0.3279 0.8932 0.0010 0.3068 0.8721 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_11" type="capsule" fromto="0.3068 0.8721 0.0010 0.2873 0.8494 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_12" type="capsule" fromto="0.2873 0.8494 0.0010 0.2695 0.8253 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_13" type="capsule" fromto="0.2695 0.8253 0.0010 0.2536 0.8000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_14" type="capsule" fromto="0.2536 0.8000 0.0010 0.2396 0.7736 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_15" type="capsule" fromto="0.2396 0.7736 0.0010 0.2277 0.7461 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_16" type="capsule" fromto="0.2277 0.7461 0.0010 0.2178 0.7179 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_17" type="capsule" fromto="0.2178 0.7179 0.0010 0.2100 0.6890 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_18" type="capsule" fromto="0.2100 0.6890 0.0010 0.2045 0.6596 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_19" type="capsule" fromto="0.2045 0.6596 0.0010 0.2011 0.6299 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_20" type="capsule" fromto="0.2011 0.6299 0.0010 0.2000 0.6000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_21" type="capsule" fromto="0.2000 0.6000 0.0010 0.2011 0.5701 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_22" type="capsule" fromto="0.2011 0.5701 0.0010 0.2045 0.5404 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_23" type="capsule" fromto="0.2045 0.5404 0.0010 0.2100 0.5110 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_24" type="capsule" fromto="0.2100 0.5110 0.0010 0.2178 0.4821 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_25" type="capsule" fromto="0.2178 0.4821 0.0010 0.2277 0.4539 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_26" type="capsule" fromto="0.2277 0.4539 0.0010 0.2396 0.4264 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_27" type="capsule" fromto="0.2396 0.4264 0.0010 0.2536 0.4000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_28" type="capsule" fromto="0.2536 0.4000 0.0010 0.2695 0.3747 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_29" type="capsule" fromto="0.2695 0.3747 0.0010 0.2873 0.3506 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_30" type="capsule" fromto="0.2873 0.3506 0.0010 0.3068 0.3279 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_31" type="capsule" fromto="0.3068 0.3279 0.0010 0.3279 0.3068 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_32" type="capsule" fromto="0.3279 0.3068 0.0010 0.3506 0.2873 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_33" type="capsule" fromto="0.3506 0.2873 0.0010 0.3747 0.2695 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_34" type="capsule" fromto="0.3747 0.2695 0.0010 0.4000 0.2536 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_35" type="capsule" fromto="0.4000 0.2536 0.0010 0.4264 0.2396 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_36" type="capsule" fromto="0.4264 0.2396 0.0010 0.4539 0.2277 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_37" type="capsule" fromto="0.4539 0.2277 0.0010 0.4821 0.2178 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_38" type="capsule" fromto="0.4821 0.2178 0.0010 0.5110 0.2100 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_39" type="capsule" fromto="0.5110 0.2100 0.0010 0.5404 0.2045 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_40" type="capsule" fromto="0.5404 0.2045 0.0010 0.5701 0.2011 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="left_arc_41" type="capsule" fromto="0.5701 0.2011 0.0010 0.6000 0.2000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+        <geom name="right_arc_0" type="capsule" fromto="1.6000 1.0000 0.0010 1.6299 0.9989 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_1" type="capsule" fromto="1.6299 0.9989 0.0010 1.6596 0.9955 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_2" type="capsule" fromto="1.6596 0.9955 0.0010 1.6890 0.9900 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_3" type="capsule" fromto="1.6890 0.9900 0.0010 1.7179 0.9822 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_4" type="capsule" fromto="1.7179 0.9822 0.0010 1.7461 0.9723 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_5" type="capsule" fromto="1.7461 0.9723 0.0010 1.7736 0.9604 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_6" type="capsule" fromto="1.7736 0.9604 0.0010 1.8000 0.9464 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_7" type="capsule" fromto="1.8000 0.9464 0.0010 1.8253 0.9305 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_8" type="capsule" fromto="1.8253 0.9305 0.0010 1.8494 0.9127 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_9" type="capsule" fromto="1.8494 0.9127 0.0010 1.8721 0.8932 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_10" type="capsule" fromto="1.8721 0.8932 0.0010 1.8932 0.8721 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_11" type="capsule" fromto="1.8932 0.8721 0.0010 1.9127 0.8494 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_12" type="capsule" fromto="1.9127 0.8494 0.0010 1.9305 0.8253 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_13" type="capsule" fromto="1.9305 0.8253 0.0010 1.9464 0.8000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_14" type="capsule" fromto="1.9464 0.8000 0.0010 1.9604 0.7736 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_15" type="capsule" fromto="1.9604 0.7736 0.0010 1.9723 0.7461 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_16" type="capsule" fromto="1.9723 0.7461 0.0010 1.9822 0.7179 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_17" type="capsule" fromto="1.9822 0.7179 0.0010 1.9900 0.6890 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_18" type="capsule" fromto="1.9900 0.6890 0.0010 1.9955 0.6596 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_19" type="capsule" fromto="1.9955 0.6596 0.0010 1.9989 0.6299 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_20" type="capsule" fromto="1.9989 0.6299 0.0010 2.0000 0.6000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_21" type="capsule" fromto="2.0000 0.6000 0.0010 1.9989 0.5701 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_22" type="capsule" fromto="1.9989 0.5701 0.0010 1.9955 0.5404 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_23" type="capsule" fromto="1.9955 0.5404 0.0010 1.9900 0.5110 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_24" type="capsule" fromto="1.9900 0.5110 0.0010 1.9822 0.4821 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_25" type="capsule" fromto="1.9822 0.4821 0.0010 1.9723 0.4539 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_26" type="capsule" fromto="1.9723 0.4539 0.0010 1.9604 0.4264 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_27" type="capsule" fromto="1.9604 0.4264 0.0010 1.9464 0.4000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_28" type="capsule" fromto="1.9464 0.4000 0.0010 1.9305 0.3747 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_29" type="capsule" fromto="1.9305 0.3747 0.0010 1.9127 0.3506 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_30" type="capsule" fromto="1.9127 0.3506 0.0010 1.8932 0.3279 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_31" type="capsule" fromto="1.8932 0.3279 0.0010 1.8721 0.3068 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_32" type="capsule" fromto="1.8721 0.3068 0.0010 1.8494 0.2873 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_33" type="capsule" fromto="1.8494 0.2873 0.0010 1.8253 0.2695 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_34" type="capsule" fromto="1.8253 0.2695 0.0010 1.8000 0.2536 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_35" type="capsule" fromto="1.8000 0.2536 0.0010 1.7736 0.2396 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_36" type="capsule" fromto="1.7736 0.2396 0.0010 1.7461 0.2277 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_37" type="capsule" fromto="1.7461 0.2277 0.0010 1.7179 0.2178 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_38" type="capsule" fromto="1.7179 0.2178 0.0010 1.6890 0.2100 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_39" type="capsule" fromto="1.6890 0.2100 0.0010 1.6596 0.2045 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_40" type="capsule" fromto="1.6596 0.2045 0.0010 1.6299 0.2011 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+    <geom name="right_arc_41" type="capsule" fromto="1.6299 0.2011 0.0010 1.6000 0.2000 0.0010" size="0.0090" rgba="0.050 0.050 0.050 1.000" contype="0" conaffinity="0"/>
+        <site name="anchor_A" pos="0.6000 1.0000 0.0100" size="0.0200" type="sphere" rgba="0.870 0.200 0.200 1.000"/>
+    <site name="anchor_B" pos="1.6000 1.0000 0.0100" size="0.0200" type="sphere" rgba="0.180 0.560 0.200 1.000"/>
+    <site name="anchor_C" pos="1.6000 0.2000 0.0100" size="0.0200" type="sphere" rgba="0.160 0.380 0.760 1.000"/>
+    <site name="anchor_D" pos="0.6000 0.2000 0.0100" size="0.0200" type="sphere" rgba="0.880 0.620 0.100 1.000"/>
+  </worldbody>
+</mujoco>
