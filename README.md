@@ -38,7 +38,7 @@ poetry install
 启动 ZMQ JSON 仿真服务：
 
 ```bash
-poetry run python -m artemis_mudri.commands.app serve \
+poetry run python -m artemis_mudri.commands.app \
   --bind tcp://0.0.0.0:5556 \
   --viewer-state-bind tcp://0.0.0.0:5555 \
   --no-render
@@ -47,7 +47,7 @@ poetry run python -m artemis_mudri.commands.app serve \
 如果需要启用现实噪声，可以通过 YAML 配置启动：
 
 ```bash
-poetry run python -m artemis_mudri.commands.app serve \
+poetry run python -m artemis_mudri.commands.app \
   --bind tcp://127.0.0.1:5556 \
   --noise-config examples/configs/noise/weak.yaml
 ```
